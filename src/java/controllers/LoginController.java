@@ -5,8 +5,13 @@
  */
 package controllers;
 
+import database.Database;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -71,20 +76,42 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LoginController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet LoginController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        String server = "localhost:3306";
+        String username ="root";
+        String password = "root";
+        String database = "cooking_site";
+        String login_username = request.getParameter("username");
+        String login_password = request.getParameter("password");
+        String query = "SELECT * FROM `cooking_site`.`users` " + 
+                    "WHERE `username` = '" + login_username + "' " +
+                    "AND `password` = '"   + login_password + "';";
+        Database db = new Database();
+        ResultSet rs = db.Database(server, database, username, password, query);
+            response.setContentType("text/html;charset=UTF-8");
+            try (PrintWriter out = response.getWriter()) {
+                /* TODO output your page here. You may use following sample code. */
+                out.println("<!DOCTYPE html>");
+                out.println("<html>");
+                out.println("<head>");
+                out.println("<title>Servlet LoginController</title>");            
+                out.println("</head>");
+                out.println("<body>");
+                
+                // Business Logic Start
+                try {
+                    while(rs.next()) {
+                        out.println(rs.getString(1) + "&nbsp;" + rs.getString(2) + "&nbsp;" + rs.getString(3) + 
+                                                      "&nbsp;" + rs.getString(4) + "<br />");
+                    }
+                    if(!rs.first()) out.println("<h1>Wrong credentials</h1>");
+                } catch (SQLException ex) {
+                    Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                // Business Logic End
+                
+                out.println("</body>");
+                out.println("</html>");
+            }    
     }
 
     /**
