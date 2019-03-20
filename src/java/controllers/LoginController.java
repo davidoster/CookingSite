@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -99,11 +100,17 @@ public class LoginController extends HttpServlet {
                 
                 // Business Logic Start
                 try {
-                    while(rs.next()) {
-                        out.println(rs.getString(1) + "&nbsp;" + rs.getString(2) + "&nbsp;" + rs.getString(3) + 
-                                                      "&nbsp;" + rs.getString(4) + "<br />");
+                    if(rs.first())
+                    {
+                        //request.set
+                        RequestDispatcher rd = request.getRequestDispatcher("subscriber");
+                        rd.forward(request, response);
                     }
-                    if(!rs.first()) out.println("<h1>Wrong credentials</h1>");
+                    else
+                    {
+                        out.println("<h1>Wrong credentials</h1>");
+                    }
+                    
                 } catch (SQLException ex) {
                     Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
                 }
