@@ -8,6 +8,14 @@
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/LoginController</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>SubscriberController</servlet-name>
+        <servlet-class>controllers.SubscriberController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SubscriberController</servlet-name>
+        <url-pattern>/subscriber</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
