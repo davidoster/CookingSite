@@ -102,9 +102,21 @@ public class LoginController extends HttpServlet {
                 try {
                     if(rs.first())
                     {
-                        //request.set
-                        RequestDispatcher rd = request.getRequestDispatcher("subscriber");
-                        rd.forward(request, response);
+                        int user_id = rs.getInt(1);
+                        Database db2 = new Database();
+                        String query2 = "SELECT * FROM `cooking_site`.`user_roles` WHERE users_id = '" + user_id + "'";
+                        ResultSet rs2 = db2.Database(server, database, username, password, query2);
+                        rs2.first();
+                        if(rs2.getString(3).equals("SUBSCRIBER")) {
+                            rs2.close();
+                            RequestDispatcher rd = request.getRequestDispatcher("subscriber");
+                            rd.forward(request, response);
+                        }
+                        else {
+                            rs2.close();
+                            RequestDispatcher rd = request.getRequestDispatcher("administrator");
+                            rd.forward(request, response);
+                        }
                     }
                     else
                     {

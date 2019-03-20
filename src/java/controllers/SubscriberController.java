@@ -5,6 +5,7 @@
  */
 package controllers;
 
+import DAOImpl.RecipeDAOImpl;
 import database.Database;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -91,6 +92,9 @@ public class SubscriberController extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet SubscriberController at " + request.getContextPath() + "</h1>");
+            RecipeDAOImpl rDAOImpl = new RecipeDAOImpl();
+            
+            rDAOImpl.create("Recipe 1", "Super Recipe", "http://CookingSite/images/image1.jpg");
             
         // Business Logic Start
             
