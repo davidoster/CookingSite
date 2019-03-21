@@ -114,12 +114,14 @@ public class LoginController extends HttpServlet {
                         }
                         else {
                             rs2.close();
-                            RequestDispatcher rd = request.getRequestDispatcher("administrator");
+                            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/test.jsp");
                             rd.forward(request, response);
                         }
                     }
                     else
                     {
+                        //RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/noentry.jsp");
+                        //rd.forward(request, response);
                         out.println("<h1>Wrong credentials</h1>");
                     }
                     

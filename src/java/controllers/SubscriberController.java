@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -100,14 +101,19 @@ public class SubscriberController extends HttpServlet {
             
         try {
             while (rs.next()) {
-                out.println("Recipe Id: " + rs.getString(1) + "&nbsp;" + 
+                RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/subscriber.jsp");
+                rd.forward(request, response);
+                /*out.println("Recipe Id: " + rs.getString(1) + "&nbsp;" + 
                             "Title: " + rs.getString(2) + "&nbsp;" + 
                             "Description: " + rs.getString(3) + "&nbsp;" + "Image: " + rs.getString(4) + 
                             "&nbsp;&nbsp;<input type=\"checkbox\" name=\"addFavourite"+ rs.getString(1) +"\" value=\"favourite\"> Add to favourtites<br />");
-
+*/
             }
             if(!rs.first()){
-                out.println("<h2>Wrong Credentials</h2>");
+                //RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/noentry.jsp");
+                //rd.forward(request, response);
+                //out.println("<h2>Wrong Credentials</h2>");
+                response.sendRedirect("/WEB-INF/views/noentry.jsp");
             }
         } catch (SQLException ex) {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);

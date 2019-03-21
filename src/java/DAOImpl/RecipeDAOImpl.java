@@ -7,6 +7,8 @@ package DAOImpl;
 
 import DAO.RecipeDAO;
 import database.Database;
+import models.Employee;
+import models.Person;
 import models.Recipe;
 
 /**
@@ -33,6 +35,13 @@ public class RecipeDAOImpl implements RecipeDAO {
         int i = db.Database(server, database, username, password, query, (byte)1);
         
         return i;
+    }
+    
+    void testPersonEmp() {
+        Person p = new Employee();
+        Employee e = (Employee) new Person();
+        Person p2 = new Person();
+        
     }
     
 }
