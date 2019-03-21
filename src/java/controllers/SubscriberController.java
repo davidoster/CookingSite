@@ -18,6 +18,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import models.Recipe;
 
 /**
  *
@@ -95,7 +96,8 @@ public class SubscriberController extends HttpServlet {
             out.println("<h1>Servlet SubscriberController at " + request.getContextPath() + "</h1>");
             RecipeDAOImpl rDAOImpl = new RecipeDAOImpl();
             
-            rDAOImpl.create("Recipe 1", "Super Recipe", "http://CookingSite/images/image1.jpg");
+            Recipe r = rDAOImpl.create("Recipe 1", "Super Recipe", "http://CookingSite/images/image1.jpg");
+            request.setAttribute("recipe", r);
             
         // Business Logic Start
             

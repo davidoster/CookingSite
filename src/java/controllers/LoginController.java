@@ -122,7 +122,9 @@ public class LoginController extends HttpServlet {
                     {
                         //RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/noentry.jsp");
                         //rd.forward(request, response);
-                        out.println("<h1>Wrong credentials</h1>");
+                        //out.println("<h1>Wrong credentials</h1><br /><p>Redirecting...</p>");
+                        
+                        response.sendRedirect("http://localhost:8084/CookingSite/noentry.jsp");
                     }
                     
                 } catch (SQLException ex) {

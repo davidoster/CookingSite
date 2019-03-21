@@ -5,11 +5,13 @@
  */
 package models;
 
+import java.io.Serializable;
+
 /**
  *
  * @author George.Pasparakis
  */
-public class Recipe {
+public class Recipe implements Serializable {
     private int id;
     private String title;
     private String description;

@@ -1,4 +1,4 @@
-<%--<jsp:forward page="/LoginController" />-->
+
 
 
 <%-- 
@@ -15,6 +15,8 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Wrong credentials!!!</h1>
+        
+        <jsp:forward page="index.jsp" />
     </body>
 </html>
