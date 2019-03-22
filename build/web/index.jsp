@@ -17,5 +17,7 @@ and open the template in the editor.
             <input type="text" name="password" value="" />
             <input type="submit" value="login" name="login" />
         </form>
+        <jsp:useBean id="status" class="java.lang.String" scope="request" />
+        <div><h4><%= ((String)request.getAttribute("status")).toString() %></h4></div>
     </body>
 </html>

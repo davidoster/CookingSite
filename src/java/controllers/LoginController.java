@@ -110,21 +110,30 @@ public class LoginController extends HttpServlet {
                         if(rs2.getString(3).equals("SUBSCRIBER")) {
                             rs2.close();
                             RequestDispatcher rd = request.getRequestDispatcher("subscriber");
+                            //RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
                             rd.forward(request, response);
                         }
+                        // logged in, check for other roles, ADMINISTRATOR
                         else {
                             rs2.close();
                             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/test.jsp");
                             rd.forward(request, response);
                         }
                     }
+                    // wrong credentials
                     else
                     {
-                        //RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/noentry.jsp");
-                        //rd.forward(request, response);
+                        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                        String s = "Wrong credentials! Try again!";
+                        //request.setAttribute("status", s);
+                        request.setAttribute("status", new String("Wrong credentials! Try again!"));
+                        
+                        rd.forward(request, response);
                         //out.println("<h1>Wrong credentials</h1><br /><p>Redirecting...</p>");
                         
-                        response.sendRedirect("http://localhost:8084/CookingSite/noentry.jsp");
+                        //response.sendRedirect("http://localhost:8084/CookingSite/noentry.jsp");
+                        
+                        //response.sendRedirect("index.jsp");
                     }
                     
                 } catch (SQLException ex) {
