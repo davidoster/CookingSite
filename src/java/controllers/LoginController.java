@@ -127,6 +127,7 @@ public class LoginController extends HttpServlet {
                         String s = "Wrong credentials! Try again!";
                         //request.setAttribute("status", s);
                         request.setAttribute("status", new String("Wrong credentials! Try again!"));
+                        request.setAttribute("status2", new String("<h1>Wrong credentials! Try again!</h1>"));
                         
                         rd.forward(request, response);
                         //out.println("<h1>Wrong credentials</h1><br /><p>Redirecting...</p>");

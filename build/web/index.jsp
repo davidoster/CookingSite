@@ -18,6 +18,8 @@ and open the template in the editor.
             <input type="submit" value="login" name="login" />
         </form>
         <jsp:useBean id="status" class="java.lang.String" scope="request" />
+        <jsp:useBean id="status2" class="java.lang.String" scope="request" />
         <div><h4><%= ((String)request.getAttribute("status")).toString() %></h4></div>
+        <div><%= ((String)request.getAttribute("status2")).toString() %></div>
     </body>
 </html>
