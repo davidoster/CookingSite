@@ -13,9 +13,11 @@
     </head>
     <body>
         <jsp:include page="../jspf/header.jsp"></jsp:include>
-        <jsp:include page="../jspf/header.jsp" />
         <h1>Hello Subscriber ...</h1>
         <jsp:useBean id="recipe" class="models.Recipe" scope="request" />
-        <%= ((models.Recipe)request.getAttribute("recipe")).getTitle() %>
+        Recipe Id: <%= ((models.Recipe)request.getAttribute("recipe")).getId() %><br />
+        Recipe Title: <%= ((models.Recipe)request.getAttribute("recipe")).getTitle() %><br />
+        Description: <%= ((models.Recipe)request.getAttribute("recipe")).getDescription() %><br />
+        Image: <img src="<%= ((models.Recipe)request.getAttribute("recipe")).getImage() %>" /><br />
     </body>
 </html>
